@@ -7,6 +7,8 @@ package facturar.Vista;
 
 import facturar.Controlador.ClienteControlador;
 import facturar.Modelo.Validar;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -96,12 +98,22 @@ public class ViewCliente extends javax.swing.JFrame {
                 txtRazonSocialActionPerformed(evt);
             }
         });
+        txtRazonSocial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRazonSocialKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Razón Social");
 
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
+            }
+        });
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyTyped(evt);
             }
         });
 
@@ -118,6 +130,11 @@ public class ViewCliente extends javax.swing.JFrame {
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoActionPerformed(evt);
+            }
+        });
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
             }
         });
 
@@ -297,18 +314,25 @@ public class ViewCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        
+
         ClienteControlador cliControl = new ClienteControlador();
         cliControl.crear(this);
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void txtNitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNitKeyTyped
+        if (evt.getKeyChar() == 8 || evt.getKeyChar() == 127) {
+            return;
+        }
         char c = evt.getKeyChar();
-        if (c<'0' || c >'9') evt.consume();
+        if (c < '0' || c > '9') {
+            evt.consume();
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "  Por favor ,digite numeros");
+        }
     }//GEN-LAST:event_txtNitKeyTyped
 
     private void btnCanelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCanelarActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnCanelarActionPerformed
 
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
@@ -316,8 +340,42 @@ public class ViewCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdActionPerformed
 
     private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
-        // TODO add your handling code here:
+        if (evt.getKeyChar() == 8 || evt.getKeyChar() == 127) {
+            return;
+        }
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "  Por favor ,digite numeros");
+        }
+        
     }//GEN-LAST:event_txtIdKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        if (evt.getKeyChar() == 8 || evt.getKeyChar() == 127) {
+            return;
+        }
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "  Por favor ,digite numeros");
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
+
+      
+        Validar.email(txtCorreo.getText()) ;
+           
+         
+     
+    }//GEN-LAST:event_txtCorreoKeyTyped
+
+    private void txtRazonSocialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonSocialKeyTyped
+
+    }//GEN-LAST:event_txtRazonSocialKeyTyped
 
     /**
      * @param args the command line arguments
